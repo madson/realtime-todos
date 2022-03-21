@@ -11,6 +11,7 @@
   } from "firebase/firestore";
   import { collectionData } from "rxfire/firestore";
   import { startWith } from "rxjs/operators";
+  import { onMount } from "svelte";
   import { v4 as uuidv4 } from "uuid";
   import { db } from "./firebase";
   import TodoItem from "./TodoItem.svelte";
@@ -20,6 +21,7 @@
 
   // Form text
   let text = "";
+  let ref;
 
   // Query requires an index, see screenshot below
   const todosRef = collection(db, "todos");
@@ -30,8 +32,8 @@
   async function add() {
     const docRef = doc(todosRef, uuidv4());
     const data = { uid, text, complete: false, created: Date.now() };
-    await setDoc(docRef, data);
     text = "";
+    await setDoc(docRef, data);
   }
 
   async function updateStatus(event) {
@@ -47,10 +49,27 @@
     const docRef = doc(todosRef, id);
     await deleteDoc(docRef);
   }
+
+  function keypressed(event) {
+    if (event.keyCode != 13) {
+      return;
+    }
+    event.preventDefault();
+    add();
+  }
+
+  onMount(() => {
+    ref.focus();
+  });
 </script>
 
-<div class="rounded bg-secondary p-1">
-  <input bind:value={text} />
+<div class="flex rounded bg-secondary p-1">
+  <input
+    class="flex-1"
+    bind:value={text}
+    on:keypress={keypressed}
+    bind:this={ref}
+  />
   <button on:click={add}>Add Task</button>
 </div>
 

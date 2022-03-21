@@ -35,8 +35,12 @@
 </div>
 
 <style>
+  p {
+    font-weight: 700;
+  }
   .is-complete {
     text-decoration: line-through;
+    font-weight: 400;
   }
   .row {
     display: flex;
