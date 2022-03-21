@@ -1,9 +1,10 @@
 {
-    "cSpell.words": [
-        "appspot",
-        "firebaseapp",
-        "firestore",
-        "rxfire",
-        "sirv"
-    ],
+  "cSpell.words": [
+    "appspot",
+    "firebaseapp",
+    "firestore",
+    "rxfire",
+    "sirv",
+    "vercel"
+  ]
 }
