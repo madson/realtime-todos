@@ -11,7 +11,6 @@
   } from "firebase/firestore";
   import { collectionData } from "rxfire/firestore";
   import { startWith } from "rxjs/operators";
-  import { onMount } from "svelte";
   import { v4 as uuidv4 } from "uuid";
   import { db } from "./firebase";
   import TodoItem from "./TodoItem.svelte";
@@ -21,7 +20,6 @@
 
   // Form text
   let text = "";
-  let ref;
 
   // Query requires an index, see screenshot below
   const todosRef = collection(db, "todos");
@@ -69,17 +67,12 @@
     event.preventDefault();
     add();
   }
-
-  onMount(() => {
-    ref.focus();
-  });
 </script>
 
 <input
   placeholder="Add a checklist item"
   bind:value={text}
   on:keypress={keypressed}
-  bind:this={ref}
 />
 
 <hr />
