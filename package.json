@@ -19,6 +19,8 @@
   },
   "dependencies": {
     "firebase": "^9.6.9",
+    "rxfire": "^6.0.3",
+    "rxjs": "^7.5.5",
     "sirv-cli": "^2.0.0",
     "uuid": "^8.3.2"
   }

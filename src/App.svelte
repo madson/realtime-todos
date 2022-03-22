@@ -1,18 +1,14 @@
 <script>
-  import {
-    onAuthStateChanged,
-    signInWithRedirect,
-    signOut,
-  } from "firebase/auth";
+  import { signInWithRedirect, signOut } from "firebase/auth";
+  import { authState } from "rxfire/auth";
+  import { onDestroy } from "svelte";
   import { auth, googleProvider } from "./firebase";
   import Profile from "./Profile.svelte";
   import Todos from "./Todos.svelte";
 
   let user;
 
-  onAuthStateChanged(auth, (loggedUser) => {
-    user = loggedUser;
-  });
+  const unsubscribe = authState(auth).subscribe((u) => (user = u));
 
   function login() {
     signInWithRedirect(auth, googleProvider);
@@ -21,6 +17,10 @@
   function logout() {
     signOut(auth);
   }
+
+  onDestroy(() => {
+    unsubscribe();
+  });
 </script>
 
 {#if user}
