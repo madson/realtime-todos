@@ -62,7 +62,7 @@
     color: rgb(78, 76, 76);
     padding: 0.15rem 0.3rem;
     border-radius: 0.2rem;
-    font-size: 0.5rem;
+    font-size: 0.8rem;
     font-weight: 600;
   }
   .clickable {
