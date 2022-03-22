@@ -66,6 +66,7 @@
     }
     event.preventDefault();
     add();
+    document.activeElement.blur();
   }
 </script>
 

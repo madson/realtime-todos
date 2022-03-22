@@ -45,8 +45,8 @@
   }
   .is-complete {
     text-decoration: line-through;
-    font-weight: 400;
-    color: rgb(141, 141, 141);
+    font-weight: 350;
+    color: rgb(165, 165, 165);
   }
   .row {
     display: flex;
