@@ -75,19 +75,16 @@
   });
 </script>
 
-<div class="flex rounded bg-secondary p-1">
-  <input
-    class="flex-1"
-    bind:value={text}
-    on:keypress={keypressed}
-    bind:this={ref}
-  />
-  <button on:click={add}>Add Task</button>
-</div>
+<input
+  placeholder="Add a checklist item"
+  bind:value={text}
+  on:keypress={keypressed}
+  bind:this={ref}
+/>
 
 <hr />
 
-<div class="rounded">
+<div>
   {#each $todos as todo}
     <TodoItem
       id={todo.id}
@@ -100,7 +97,7 @@
 </div>
 
 <style>
-  button {
-    margin-left: 0.5rem;
+  input {
+    width: 100%;
   }
 </style>
