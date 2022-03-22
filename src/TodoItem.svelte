@@ -42,11 +42,12 @@
 
 <style>
   p {
-    font-weight: 600;
+    font-weight: 500;
   }
   .is-complete {
     text-decoration: line-through;
     font-weight: 400;
+    color: rgb(141, 141, 141);
   }
   .row {
     display: flex;
@@ -72,7 +73,7 @@
   .done {
     border: 0.01rem solid rgb(179, 236, 179);
     background-color: rgb(229, 248, 230);
-    color: rgb(124, 124, 124);
+    color: rgb(84, 129, 90);
   }
   .danger {
     border: 0.01rem solid rgb(255, 184, 184);
