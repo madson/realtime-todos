@@ -7,7 +7,6 @@
   const dispatch = createEventDispatcher();
 
   function logout(event) {
-    console.log(event);
     dispatch("logout");
   }
 </script>
