@@ -17,26 +17,32 @@
   }
 </script>
 
-<div class="row bg-primary p-05 pl-1 pr-1 mb-005">
-  {#if complete}
-    <p class="is-complete">{text}</p>
-  {:else}
-    <p>{text}</p>
-  {/if}
+<div class="row p-05 mb-005">
+  <div class="flex" style="align-items: center;">
+    {#if complete}
+      <input type="checkbox" on:change={toggleStatus} class="mr-05" checked />
+      <p class="is-complete">{text}</p>
+    {:else}
+      <input type="checkbox" on:change={toggleStatus} class="mr-05" />
+      <p>{text}</p>
+    {/if}
+  </div>
 
   <div>
     {#if complete}
-      <button on:click={toggleStatus}>Not done</button>
+      <span class="badge clickable done" on:click={toggleStatus}>DONE</span>
     {:else}
-      <button on:click={toggleStatus}>Done</button>
+      <span class="badge clickable inactive" on:click={toggleStatus}>TO DO</span
+      >
     {/if}
-    <button class="ml-05" on:click={remove}>Remove</button>
+
+    <span class="badge clickable danger ml-05" on:click={remove}>❌</span>
   </div>
 </div>
 
 <style>
   p {
-    font-weight: 700;
+    font-weight: 600;
   }
   .is-complete {
     text-decoration: line-through;
@@ -46,5 +52,31 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+  }
+  .badge {
+    background-color: lightgray;
+    color: rgb(78, 76, 76);
+    padding: 0.15rem 0.3rem;
+    border-radius: 0.2rem;
+    font-size: 0.5rem;
+    font-weight: 600;
+  }
+  .clickable {
+    cursor: pointer;
+  }
+  .inactive {
+    border: 0.01rem solid rgb(201, 201, 201);
+    background-color: rgb(240, 240, 240);
+    color: rgb(124, 124, 124);
+  }
+  .done {
+    border: 0.01rem solid rgb(179, 236, 179);
+    background-color: rgb(229, 248, 230);
+    color: rgb(124, 124, 124);
+  }
+  .danger {
+    border: 0.01rem solid rgb(255, 184, 184);
+    background-color: rgb(255, 230, 230);
+    color: rgb(97, 97, 97);
   }
 </style>
