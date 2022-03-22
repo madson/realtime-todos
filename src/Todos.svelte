@@ -93,7 +93,7 @@
   input {
     width: 100%;
     padding: 0.5rem 0.7rem;
-    font-weight: 300;
+    font-weight: 400;
     border-width: 0.01rem;
     background-color: rgb(246, 250, 253);
   }

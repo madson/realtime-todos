@@ -28,15 +28,14 @@
     {/if}
   </div>
 
-  <div>
+  <div class="flex">
     {#if complete}
-      <span class="badge clickable done" on:click={toggleStatus}>DONE</span>
+      <div class="badge clickable done" on:click={toggleStatus}>DONE</div>
     {:else}
-      <span class="badge clickable inactive" on:click={toggleStatus}>TO DO</span
-      >
+      <div class="badge clickable inactive" on:click={toggleStatus}>TO DO</div>
     {/if}
 
-    <span class="badge clickable danger ml-05" on:click={remove}>❌</span>
+    <div class="badge clickable danger ml-05" on:click={remove}>❌</div>
   </div>
 </div>
 
@@ -53,6 +52,10 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    border-radius: 0.3rem;
+  }
+  .row:hover {
+    background-color: rgb(245, 245, 245);
   }
   .badge {
     background-color: lightgray;
