@@ -43,15 +43,23 @@
   async function updateStatus(event) {
     const { id, newStatus } = event.detail;
     const docRef = doc(todosRef, id);
-    await updateDoc(docRef, {
-      complete: newStatus,
-    });
+    try {
+      await updateDoc(docRef, {
+        complete: newStatus,
+      });
+    } catch (e) {
+      console.error(e);
+    }
   }
 
   async function removeItem(event) {
     const { id } = event.detail;
     const docRef = doc(todosRef, id);
-    await deleteDoc(docRef);
+    try {
+      await deleteDoc(docRef);
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   function keypressed(event) {
