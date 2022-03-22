@@ -3,14 +3,15 @@
     collection,
     deleteDoc,
     doc,
-    onSnapshot,
     orderBy,
     query,
     setDoc,
     updateDoc,
     where,
   } from "firebase/firestore";
-  import { onDestroy, onMount } from "svelte";
+  import { collectionData } from "rxfire/firestore";
+  import { startWith } from "rxjs/operators";
+  import { onMount } from "svelte";
   import { v4 as uuidv4 } from "uuid";
   import { db } from "./firebase";
   import TodoItem from "./TodoItem.svelte";
@@ -26,13 +27,7 @@
   const todosRef = collection(db, "todos");
   const queryRef = query(todosRef, where("uid", "==", uid), orderBy("created"));
 
-  let todos = [];
-  const unsubscribe = onSnapshot(queryRef, (snapshot) => {
-    todos = snapshot.docs.map((doc) => ({
-      ...doc.data(),
-      id: doc.id,
-    }));
-  });
+  const todos = collectionData(queryRef, { idField: "id" }).pipe(startWith([]));
 
   async function add() {
     const docRef = doc(todosRef, uuidv4());
@@ -70,10 +65,6 @@
   onMount(() => {
     ref.focus();
   });
-
-  onDestroy(() => {
-    unsubscribe();
-  });
 </script>
 
 <div class="flex rounded bg-secondary p-1">
@@ -89,7 +80,7 @@
 <hr />
 
 <div class="rounded">
-  {#each todos as todo}
+  {#each $todos as todo}
     <TodoItem
       id={todo.id}
       text={todo.text}
